@@ -1,5 +1,5 @@
 {
-  "name": "tt",
+  "name": "sampleapp",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
