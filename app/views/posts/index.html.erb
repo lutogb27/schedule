@@ -20,27 +20,27 @@
    </thead>
  
   <tbody>
-    <% if @posts.count > 0 %>
-      <% @posts.each do |user| %>
+    <% if @post.count > 0 %>
+      <% @post.each do |post| %>
         <tr>
           <td><%= post.id %></td>
           <td><%= post.title %></td>
           <td><%= post.start_at.to_s(:datetime_jp) %></td>
           <td><%= post.end_at.to_s(:datetime_jp) %></td>
           <td>
-            <% if post.is_all_day %>
-              <strong></strong>
+            <% if post.is_all_day == true %>
+            <%= "○" %>
             <% end %>
           </td>
           <td><%= post.updated_at.to_s(:datetime_jp_detail) %></td>
           <td>
-            <%= link_to "確認", :post %>
+            <%= link_to "確認", post %>
           </td>
-           <td>
+          <td>
             <%= link_to "編集", [:edit, post] %>
           </td>
           <td>
-            <%= link_to "削除", post, method: :delete, data: {confirm: "本当に削除しますか？"} %>
+            <%= link_to "削除", post, method: :delete %>
           </td>
         </tr>
       <% end %>
