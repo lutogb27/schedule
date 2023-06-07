@@ -62,7 +62,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    flash[:delete] = "スケジュールを削除しました"
+    flash[:notice] = "スケジュールを削除しました"
     redirect_to :posts
   end
 

@@ -28,8 +28,8 @@
           <td><%= post.start_at.to_s(:datetime_jp) %></td>
           <td><%= post.end_at.to_s(:datetime_jp) %></td>
           <td>
-            <% if post.is_all_day == true %>
-            <%= "○" %>
+            <% if post.is_all_day %>
+              <strong>○</strong>
             <% end %>
           </td>
           <td><%= post.updated_at.to_s(:datetime_jp_detail) %></td>
@@ -40,7 +40,7 @@
             <%= link_to "編集", [:edit, post] %>
           </td>
           <td>
-            <%= link_to "削除", post, method: :delete %>
+            <%= button_to "削除", post, method: :delete %>
           </td>
         </tr>
       <% end %>
