@@ -11,5 +11,9 @@
 
   <body>
     <%= yield %>
+    <footer>
+      <h2>現在の日時:<%= @today %></h2> 
+      <h2>スケジュール合計:<%= Post.count %></h2>
+    </footer>
   </body>
 </html>
