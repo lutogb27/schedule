@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def index
     @page_title ="スケジュール一覧"
-    @post = Post.all
+    @posts = Post.all
   end
 
   def new
@@ -16,18 +16,12 @@ class PostsController < ApplicationController
   end
 
   def create
-     @post = Post.new(params.require(:post).permit(
-      :title, #タイトル
-      :start_at, #開始日
-      :end_at, #終了日
-      :is_all_day, #終日
-      :memo, #スケジュールメモ
-      ))
+     @post = Post.new(post_params)
     if @post.save
-      flash[:success] = "スケジュールを登録しました"
+      flash[:notice] = "スケジュールを登録しました"
       redirect_to :posts
     else
-      flash[:failure] = "スケジュールを登録できませんでした"
+      flash[:notice] = "スケジュールを登録できませんでした"
       render "new"
     end  
   end
@@ -42,21 +36,15 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def update
+   def update
     @post = Post.find(params[:id])
-    if @post = Post.update(params.require(:post).permit(
-      :title, #タイトル
-      :start_at, #開始日
-      :end_at, #終了日
-      :is_all_day, #終日
-      :memo, #スケジュールメモ
-      ))
-      flash[:success] = "スケジュールを更新しました"
-      redirect_to :posts
+    if @post.update(post_params)
+      flash[:notice] = "スケジュールID「#{@post.id}」の情報を更新しました"
+      redirect_to :post
     else
-      flash[:failure] = "スケジュールを更新できませんでした"
+      flash.now[:failure] ="スケジュールID「#{@post.id}」の情報を更新できませんでした"
       render "edit"
-    end  
+    end
   end
 
   def destroy
@@ -64,6 +52,18 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:notice] = "スケジュールを削除しました"
     redirect_to :posts
+  end
+
+  private 
+
+  def post_params
+    params.require(:post).permit(
+      :title,
+      :start_at,
+      :end_at,
+      :is_all_day,
+      :memo
+    )
   end
 
 end

@@ -20,8 +20,8 @@
    </thead>
  
   <tbody>
-    <% if @post.count > 0 %>
-      <% @post.each do |post| %>
+    <% if @posts.count > 0 %>
+      <% @posts.each do |post| %>
         <tr>
           <td><%= post.id %></td>
           <td><%= post.title %></td>
