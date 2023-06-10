@@ -40,7 +40,7 @@
             <%= link_to "編集", [:edit, post] %>
           </td>
           <td>
-            <%= button_to "削除", post, method: :delete %>
+            <%= button_to "削除", post_path(post), method: :delete, data: {confirm: "削除しますか？"} %>
           </td>
         </tr>
       <% end %>
